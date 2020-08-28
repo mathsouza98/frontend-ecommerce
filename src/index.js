@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Home from './Home';
 import * as serviceWorker from './serviceWorker';
+import Router from './routes/Router'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <Router />
   </React.StrictMode>,
   document.getElementById('root')
 );
