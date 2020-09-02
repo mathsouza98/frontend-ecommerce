@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Navbar from '../components/Navbar';
 import productApi from '../services/productsApi';
-import style from "./styles.css";
+import style from "./adminstyles.css";
 
 const Admin = () => {
     return (
         <div>
+            <Navbar />
             <div className="container-xl">
                 <div className="table-responsive">
                     <div className="table-wrapper">
@@ -14,8 +16,8 @@ const Admin = () => {
                                     <h2>Administrar <b>Produtos</b></h2>
                                 </div>
                                 <div className="col-sm-6">
-                                    <a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Novo Produto</span></a>
-                                    <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                                    <a href="#addProdutoModal" className="btn btn-success" data-toggle="modal"><span>Novo Produto</span></a>
+                                    <a href="#deletarProdutoModal" className="btn btn-danger" data-toggle="modal"><span>Deletar</span></a>						
                                 </div>
                             </div>
                         </div>
@@ -47,17 +49,19 @@ const Admin = () => {
                                             <label for="checkbox1"></label>
                                         </span>
                                     </td>
-                                    <td>Id = 1</td>
-                                    <td>Nome do Produto</td>
-                                    <td>Categoria do Produto</td>
-                                    <td>Preço do Produto</td>
-                                    <td>Marca do Produto</td>
-                                    <td>Quantidade no Estoque</td>
+                                    <td>Id</td>
+                                    <td>Nome</td>
+                                    <td>Categoria</td>
+                                    <td>Preço</td>
+                                    <td>Marca</td>
+                                    <td>Quantidade</td>
                                     <td>Visualizações</td>
-                                    <td>Foto do Produto</td>
+                                    <td>Foto</td>
                                     <td>
-                                        <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="#editProdutoModal" className="edit" data-toggle="modal"><button type="button" class="btn btn-warning" data-toggle="tooltip" title="Edit">Editar</button></a>
+                                    </td>
+                                    <td>
+                                        <a href="#deletarProdutoModal" className="Deletar" data-toggle="modal"><button type="button" class="btn btn-danger" data-toggle="tooltip" title="Deletar">Deletar</button></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -77,7 +81,7 @@ const Admin = () => {
                     </div>
                 </div>
             </div>
-            <div id="addEmployeeModal" className="modal fade">
+            <div id="addProdutoModal" className="modal fade">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <form>
@@ -87,101 +91,103 @@ const Admin = () => {
                             </div>
                             <div className="modal-body">					
                                 <div className="form-group">
-                                    <label>Id</label>
+                                    <label>Nome do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>
                                 <div className="form-group">
-                                    <label>Nome</label>
-                                    <input type="text" className="form-control" required></input>
-                                </div>
-                                <div className="form-group">
-                                    <label>Categoria</label>
+                                    <label>Categoria do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>	
                                 <div className="form-group">
-                                    <label>Preço</label>
+                                    <label>Preço do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>	
                                 <div className="form-group">
-                                    <label>Marca</label>
+                                    <label>Marca do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>		
                                 <div className="form-group">
-                                    <label>Quantidade</label>
+                                    <label>Quantidade do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>
                                 <div className="form-group">
-                                    <label>Visualizações</label>
+                                    <label>Visualizações do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>
                                 <div className="form-group">
-                                    <label>Foto</label>
+                                    <label>Foto do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>			
                             </div>
-                            <div className="modal-footer">
-                                <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"></input>
-                                <input type="submit" className="btn btn-success" value="Add"></input>
+                            <div className="modal-footer" >
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary">Adicionar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
-
-
-            <div id="editEmployeeModal" className="modal fade">
+            <div id="editProdutoModal" className="modal fade">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <form>
                             <div className="modal-header">						
-                                <h4 className="modal-title">Edit Employee</h4>
+                                <h4 className="modal-title">Editar Produto</h4>
                                 <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div className="modal-body">					
                                 <div className="form-group">
-                                    <label>Name</label>
+                                    <label>Nome do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>
                                 <div className="form-group">
-                                    <label>Email</label>
-                                    <input type="email" className="form-control" required></input>
-                                </div>
-                                <div className="form-group">
-                                    <label>Address</label>
-                                    <textarea className="form-control" required></textarea>
-                                </div>
-                                <div className="form-group">
-                                    <label>Phone</label>
+                                    <label>Categoria do Produto</label>
                                     <input type="text" className="form-control" required></input>
-                                </div>					
+                                </div>	
+                                <div className="form-group">
+                                    <label>Preço do Produto</label>
+                                    <input type="text" className="form-control" required></input>
+                                </div>	
+                                <div className="form-group">
+                                    <label>Marca do Produto</label>
+                                    <input type="text" className="form-control" required></input>
+                                </div>		
+                                <div className="form-group">
+                                    <label>Quantidade do Produto</label>
+                                    <input type="text" className="form-control" required></input>
+                                </div>
+                                <div className="form-group">
+                                    <label>Visualizações do Produto</label>
+                                    <input type="text" className="form-control" required></input>
+                                </div>
+                                <div className="form-group">
+                                    <label>Foto do Produto</label>
+                                    <input type="text" className="form-control" required></input>
+                                </div>				
                             </div>
                             <div className="modal-footer">
-                                <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"></input>
-                                <input type="submit" className="btn btn-info" value="Save"></input>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary">Salvar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
-
-
-            <div id="deleteEmployeeModal" className="modal fade">
+            <div id="deletarProdutoModal" className="modal fade">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <form>
                             <div className="modal-header">						
-                                <h4 className="modal-title">Delete Employee</h4>
+                                <h4 className="modal-title">Deletar Produto</h4>
                                 <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div className="modal-body">					
-                                <p>Are you sure you want to delete these Records?</p>
-                                <p className="text-warning"><small>This action cannot be undone.</small></p>
+                                <p>Tem certeza que quer deletar esse(s) produto(s)?</p>
+                                <p className="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
                             </div>
                             <div className="modal-footer">
-                                <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"></input>
-                                <input type="submit" className="btn btn-danger" value="Delete"></input>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary">Deletar</button>
                             </div>
                         </form>
                     </div>
