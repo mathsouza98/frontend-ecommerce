@@ -24,7 +24,7 @@ export default function Router () {
           <Route exact path='/admin'>
             <Admin />
           </Route>
-          <Route exact path='/product'>
+          <Route path="/product/:id">
             <Product />
           </Route>
         </Switch>

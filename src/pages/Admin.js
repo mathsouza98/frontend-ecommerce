@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import productApi from '../services/productsApi';
-import style from "./adminstyles.css";
+import style from '../styles/adminStyle.css';
 
 const Admin = () => {
     return (
@@ -56,7 +56,7 @@ const Admin = () => {
                                     <td>Marca</td>
                                     <td>Quantidade</td>
                                     <td>Visualizações</td>
-                                    <td>Foto</td>
+                                    <td><img src="imagem.jpg"></img></td>
                                     <td>
                                         <a href="#editProdutoModal" className="edit" data-toggle="modal"><button type="button" class="btn btn-warning" data-toggle="tooltip" title="Edit">Editar</button></a>
                                     </td>
@@ -116,7 +116,7 @@ const Admin = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Foto do Produto</label>
-                                    <input type="text" className="form-control" required></input>
+                                    <input type="image" className="form-control" required></input>
                                 </div>			
                             </div>
                             <div className="modal-footer" >
@@ -162,7 +162,7 @@ const Admin = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Foto do Produto</label>
-                                    <input type="text" className="form-control" required></input>
+                                    <input type="image" className="form-control" required></input>
                                 </div>				
                             </div>
                             <div className="modal-footer">

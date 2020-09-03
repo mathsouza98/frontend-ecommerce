@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import productApi from '../services/productsApi';
-import style from "./productstyles.css";
+import style from '../styles/productStyle.css';
 
 export default class Product extends Component {
     state = {
@@ -14,14 +14,24 @@ export default class Product extends Component {
         return (
             <div>
                 <Navbar />
-                <div className="product-info">
-                    <p>Imagem</p>
-                    <h1>Nome</h1>
-                    <p>Categoria</p>
-                    <p>Preço</p>
-                    <p>Marca</p>
-                    <p>Quantidade de Estoque</p>
-                    <p>Visualização</p>
+                <div class="container">
+                    <div class="left-column">
+                        <img src=""></img>
+                    </div>   
+                    <div class="right-column">
+                        <div class="product-description">
+                            <span>Marca</span>
+                            <h1>Produto</h1>
+                            <p>Categoria</p>
+                            <p>Quantidade</p>
+                            <p>Visualizações</p>
+                        </div>
+        
+                        <div class="product-price">
+                            <span>R$0,00</span>
+                            <a href="#" class="cart-btn">Adicionar ao carrinho</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
