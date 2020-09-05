@@ -5,6 +5,8 @@ import UserRegistry from '../pages/UserRegistry'
 import Cart from '../pages/Cart'
 import CartNew from '../pages/CartNew'
 
+import Admin from '../pages/Admin'
+import Product from '../pages/Product'
 import {
   BrowserRouter,
   Switch,
@@ -28,6 +30,12 @@ export default function Router () {
           </Route>
           <Route exact path='/cadastro'>
             <UserRegistry />
+          </Route>
+          <Route exact path='/admin'>
+            <Admin />
+          </Route>
+          <Route path="/product/:id">
+            <Product />
           </Route>
         </Switch>
       </BrowserRouter>
