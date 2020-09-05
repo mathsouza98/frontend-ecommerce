@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
-import productApi from '../services/productsApi';
 import style from '../styles/productStyle.css';
 
 export default class Product extends Component {
@@ -17,7 +16,7 @@ export default class Product extends Component {
                 <div class="container">
                     <div class="left-column">
                         <img src=""></img>
-                    </div>   
+                    </div>
                     <div class="right-column">
                         <div class="product-description">
                             <span>Marca</span>
@@ -26,7 +25,7 @@ export default class Product extends Component {
                             <p>Quantidade</p>
                             <p>Visualizações</p>
                         </div>
-        
+
                         <div class="product-price">
                             <span>R$0,00</span>
                             <a href="#" class="cart-btn">Adicionar ao carrinho</a>

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import loginApi from '../services/loginApi';
 import loginStyle from '../styles/loginStyle.css';
 

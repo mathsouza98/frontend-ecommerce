@@ -12,7 +12,7 @@ export default class Products extends Component {
   }
 
   loadProducts = async () => {
-    const response = await productApi.get('/list-products');
+    const response = await productApi.get();
 
     this.setState({ products: response.data });
   }
