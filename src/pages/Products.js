@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import productApi from '../services/productsApi';
 import productAssets from '../assets/productAssets';
+import axios from 'axios'
 
 export default class Products extends Component {
   state = {
     products: []
   }
 
-  componentDidMount() {
-    this.loadProducts();
-  }
-
-  loadProducts = async () => {
-    const response = await productApi.get('/list-products');
-
+  async componentDidMount() {
+    const response = await axios.get('http://localhost:8080/api/products');
     this.setState({ products: response.data });
   }
 
