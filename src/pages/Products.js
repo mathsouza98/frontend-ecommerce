@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { productsApi } from '../services/index';
 import productAssets from '../assets/productAssets';
 import axios from 'axios'
 

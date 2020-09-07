@@ -1,61 +1,60 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Formik, Field, Form } from "formik";
+import axios from 'axios';
 
-const SubmitForm = () => {
+function SubmitForm({ requestMethod, data }) {
+
+  async function insertProduct(values) {
+    const response = await axios.post('http://localhost:8080/api/products/', values)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  function handleSubmit(values) {
+    if (requestMethod === 'post') {
+      insertProduct(values);
+    } else if (requestMethod === 'put') {
+      //api.editProduct();
+    }
+  }
+
   return (
-    <div id="addProdutoModal" className="modal fade">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <form>
-            <div className="modal-header">
-              <h4 className="modal-title">Adicionar Produto</h4>
-              <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div className="modal-body">
-              <Formik
-                initialValues={{ name: "", category: "", price: "", brand: "", stockQuantity: "", imagePathUrl: "" }}
-                onSubmit={async values => {
-                  await new Promise(resolve => setTimeout(resolve, 500));
-                  alert(JSON.stringify(values, null, 2));
-                }}
-              >
-                <Form>
-                  <div className="form-group">
-                    <label>Nome do Produto</label>
-                    <Field name="name" type="text" className="form-control" required></Field>
-                  </div>
-                  <div className="form-group">
-                    <label>Categoria do Produto</label>
-                    <Field name="category" type="text" className="form-control" required></Field>
-                  </div>
-                  <div className="form-group">
-                    <label>Preço do Produto</label>
-                    <Field name="price" type="text" className="form-control" required></Field>
-                  </div>
-                  <div className="form-group">
-                    <label>Marca do Produto</label>
-                    <Field name="brand" type="text" className="form-control" required></Field>
-                  </div>
-                  <div className="form-group">
-                    <label>Quantidade do Produto</label>
-                    <Field name="stockQuantity" type="text" className="form-control" required></Field>
-                  </div>
-                  <div className="form-group">
-                    <label>Foto do Produto</label>
-                    <Field type="imagePathUrl" className="form-control" required></Field>
-                  </div>
-                </Form>
-              </Formik>
-            </div>
-            <div className="modal-footer" >
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary">Adicionar</button>
-            </div>
-          </form>
+    <Formik
+      initialValues={{ name: "", category: "", price: "", brand: "", stockQuantity: "" }}
+      onSubmit={values => handleSubmit(values)}
+    >
+      <Form>
+        <div className="form-group">
+          <label>Nome do Produto</label>
+          <Field name="name" type="text" className="form-control" required></Field>
         </div>
-      </div>
-    </div>
+        <div className="form-group">
+          <label>Categoria do Produto</label>
+          <Field name="category" type="text" className="form-control" required></Field>
+        </div>
+        <div className="form-group">
+          <label>Preço do Produto</label>
+          <Field name="price" className="form-control" required></Field>
+        </div>
+        <div className="form-group">
+          <label>Marca do Produto</label>
+          <Field name="brand" type="text" className="form-control" required></Field>
+        </div>
+        <div className="form-group">
+          <label>Quantidade do Produto</label>
+          <Field name="stockQuantity" className="form-control" required></Field>
+        </div>
+        <div className="modal-footer" >
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" className="btn btn-primary">Salvar</button>
+        </div>
+      </Form>
+    </Formik>
   );
 }
 

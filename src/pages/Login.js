@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import loginApi from '../services/loginApi';
+import axios from 'axios';
 import loginStyle from '../styles/loginStyle.css';
 
 export default function Login() {
@@ -12,7 +12,7 @@ export default function Login() {
   }
 
   const signinRequest = async () => {
-    loginApi.post('http://localhost:8080/api/auth/signin', {
+    axios.post('http://localhost:8080/api/auth/signin', {
       username: username,
       password: password
     })
