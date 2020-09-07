@@ -3,7 +3,6 @@ import Home from '../pages/Home'
 import Login from '../pages/Login'
 import UserRegistry from '../pages/UserRegistry'
 import Cart from '../pages/Cart'
-import CartNew from '../pages/CartNew'
 
 import Admin from '../pages/Admin'
 import Product from '../pages/Product'
@@ -23,7 +22,7 @@ export default function Router () {
             <Home />
           </Route>
           <Route exact path='/cart'>
-            <CartNew />
+            <Cart />
           </Route>
           <Route exact path='/login'>
             <Login />
