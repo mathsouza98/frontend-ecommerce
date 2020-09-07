@@ -7,6 +7,7 @@ import axios from 'axios'
 
 export default function Admin() {
   const [productState, setProductState] = useState([]);
+  const [selectedProductState, setSelectedProductState] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -74,7 +75,7 @@ export default function Admin() {
                     <td>{product.stockQuantity}</td>
                     <td>{product.totalVisualization}</td>
                     <td>
-                      <a href="#editProdutoModal" data-toggle="modal"><button type="button" className="btn btn-warning" data-toggle="tooltip" title="Edit">Editar</button></a>
+                      <a href="#editProdutoModal" data-toggle="modal"><button type="button" className="btn btn-warning" data-toggle="tooltip" title="Edit" onClick={() => setSelectedProductState(product)}>Editar</button></a>
                     </td>
                     <td>
                       <button
@@ -118,42 +119,13 @@ export default function Admin() {
       <div id="editProdutoModal" className="modal fade">
         <div className="modal-dialog">
           <div className="modal-content">
-            <form>
-              <div className="modal-header">
-                <h4 className="modal-title">Editar Produto</h4>
-                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              </div>
-              <div className="modal-body">
-                <div className="form-group">
-                  <label>Nome do Produto</label>
-                  <input type="text" className="form-control" required></input>
-                </div>
-                <div className="form-group">
-                  <label>Categoria do Produto</label>
-                  <input type="text" className="form-control" required></input>
-                </div>
-                <div className="form-group">
-                  <label>Preço do Produto</label>
-                  <input type="text" className="form-control" required></input>
-                </div>
-                <div className="form-group">
-                  <label>Marca do Produto</label>
-                  <input type="text" className="form-control" required></input>
-                </div>
-                <div className="form-group">
-                  <label>Quantidade do Produto</label>
-                  <input type="text" className="form-control" required></input>
-                </div>
-                <div className="form-group">
-                  <label>Visualizações do Produto</label>
-                  <input type="text" className="form-control" required></input>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" className="btn btn-primary">Salvar</button>
-              </div>
-            </form>
+            <div className="modal-header">
+              <h4 className="modal-title">Editar Produto</h4>
+              <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div className="modal-body">
+              <SubmitForm requestMethod="put" data={selectedProductState} />
+            </div>
           </div>
         </div>
       </div>

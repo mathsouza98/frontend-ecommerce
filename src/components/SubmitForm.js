@@ -15,11 +15,22 @@ function SubmitForm({ requestMethod, data }) {
       });
   }
 
+  async function editProduct(id, values) {
+    console.log(values)
+    const response = await axios.put('http://localhost:8080/api/products/' + id, values)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   function handleSubmit(values) {
     if (requestMethod === 'post') {
       insertProduct(values);
     } else if (requestMethod === 'put') {
-      //api.editProduct();
+      editProduct(data.id, values);
     }
   }
 
