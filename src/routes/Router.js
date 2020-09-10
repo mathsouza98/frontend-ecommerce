@@ -1,6 +1,8 @@
 import React from 'react'
 import { Home, Login, Admin, Products, Product } from '../pages/index'
 import ProtectedRoute from './ProtectedRouter'
+import UserRegistry from '../pages/UserRegistry'
+import Cart from '../pages/Cart'
 import {
   BrowserRouter,
   Switch,
@@ -16,11 +18,17 @@ export default function Router() {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route exact path='/login' component={Login} />
-          <Route path="/product/:id">
-            <Product />
+          <Route exact path='/cart'>
+            <Cart />
           </Route>
+          <Route exact path='/register'>
+            <UserRegistry />
+          </Route>
+          <Route exact path='/login' component={Login} />
           <ProtectedRoute exact path="/admin" component={Admin} />
+          <Route exact path='/admin'>
+            <Admin />
+          </Route>
         </Switch>
       </BrowserRouter>
     </>
