@@ -9,18 +9,14 @@ export default function Admin() {
   const [productState, setProductState] = useState([]);
   const [selectedProductState, setSelectedProductState] = useState([]);
 
+  async function fetchData() {
+    const response = await axios.get('http://localhost:8080/api/products')
+    setProductState(response.data);      
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get('http://localhost:8080/api/products')
-        .then(function (response) {
-          setProductState(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
     fetchData();
-  }, []);
+  }, [productState]);
 
   return (
     <div>

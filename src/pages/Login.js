@@ -1,27 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import loginStyle from '../styles/loginStyle.css';
+import auth from '../services/auth';
 
-export default function Login() {
+const Login = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    signinRequest();
-  }
-
-  const signinRequest = async () => {
-    axios.post('http://localhost:8080/api/auth/signin', {
-      username: username,
-      password: password
+    auth.login(username, password, () => {
+      props.history.push("/admin");
     })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   return (
@@ -42,3 +32,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
