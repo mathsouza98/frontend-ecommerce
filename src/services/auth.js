@@ -6,15 +6,20 @@ class Auth {
   }
 
   async login(username, password, cb) {
-    const response = await axios.post('http://localhost:8080/api/auth/signin', {
-      username: username,
-      password: password
-    })
-    console.log(response)
-    if (response.status === 200) {
-      this.authenticated = true;
+    
+    try {
+      const response = await axios.post('http://localhost:8080/api/auth/signin', {
+        username: username,
+        password: password
+      })
+      console.log(response)
+      if (response.status === 200) {
+        this.authenticated = true;
+      } 
+      cb();
+    } catch (err) {
+      alert(err);
     }
-    cb();
   }
 
   logout(cb) {
