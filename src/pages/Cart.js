@@ -54,7 +54,7 @@ export default function Cart() {
                     </div>
                   </div>
                 </div>
-                <a href="/home" className="btn btn-warning" role="button" aria-pressed="true">Continuar Comprando</a>
+                <a href="/" className="btn btn-warning" role="button" aria-pressed="true">Continuar Comprando</a>
               </div>
             </div>
             <div className="mb-3">
