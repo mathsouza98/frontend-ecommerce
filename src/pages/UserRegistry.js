@@ -4,15 +4,8 @@ import UserRegistryStyle from '../styles/userRegistryStyle.css';
 
 {/* <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" /> */}
 
-function setCpfCnpj (opt) {
-  var value = opt.value;  
-  console.log(value);
-  // alert("The input value has changed. The new value is: " + opt);
-  // document.getElementById("srt").value = document.getElementById("option1").value;
-}
-
 export default function UserRegistry() {
-  // const [opt, setCpfCnpj] = useState("");
+
   return(
     <div>
       <Navbar />
@@ -29,9 +22,9 @@ export default function UserRegistry() {
                   </div>
                   <div class="col-sm-4 form-group">
                   <label>Selecione uma opção</label>
-                  <select class="form-control" id="option1" onChange={e => setCpfCnpj(e.target.value)}>  
-                    <option value={"1"} onChange={e => setCpfCnpj(e.target.value)} >Sou Pessoa Física</option>
-                    <option value={"2"} onChange={e => setCpfCnpj(e.target.value)}>Sou Pessoa Jurídica</option>
+                  <select class="form-control" id="option1">  
+                    <option value={"1"} >Sou Pessoa Física</option>
+                    <option value={"2"} >Sou Pessoa Jurídica</option>
                   </select>
                   </div>
                   <div class="col-sm-4 form-group">

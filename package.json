@@ -8,11 +8,16 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "bootstrap": "^4.5.2",
 =======
     "bootstrap": "^4.5.0",
     "formik": "^2.1.5",
 >>>>>>> 2dceae27f06db6fd48a6c78ff67f06feda3a49ad
+=======
+    "bootstrap": "^4.5.0",
+    "formik": "^2.1.5",
+>>>>>>> 3831fc638f74c6e9c4ec94a087efe5031ea02c24
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
