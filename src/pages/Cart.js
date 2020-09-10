@@ -8,6 +8,7 @@ export default function Cart() {
   return (
     <div>
       <Navbar />
+      <div className="container">
       <section style={{ margin: '0px 20px' }}>
         <div className="row">
           <div className="col-lg-8">
@@ -122,6 +123,7 @@ export default function Cart() {
           </div>
         </div>
       </section>
+    </div>
     </div>
   );
 }
