@@ -18,7 +18,7 @@ export default function Cart() {
                   <div className="row mb-4">
                     <div className="col-md-5 col-lg-3 col-xl-3">
                       <div className="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                        <img className="img-fluid w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample"/>
+                        <img className="img-fluid w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample" />
                         <a href="#!" >
                           <div className="mask">
                             <div className="mask rgba-black-slight"></div>
@@ -39,7 +39,7 @@ export default function Cart() {
                             <div className="def-number-input number-input safari_only mb-0 w-100">
                               <button onClick={() => selectBoxState > 1 ? setSelectBoxState(selectBoxState - 1) : ''}
                                 className="button"><span>-</span></button>
-                              <input value={selectBoxState} style={{ width: '35px', textAlign: 'center'}} />
+                              <input readOnly={selectBoxState} value={selectBoxState} style={{ width: '35px', textAlign: 'center' }} />
                               <button onClick={() => setSelectBoxState(selectBoxState + 1)} className="button"><span>+</span></button>
                             </div>
                             <small id="passwordHelpBlock" className="form-text text-muted text-center" >Quantidade</small>
