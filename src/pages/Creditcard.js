@@ -16,8 +16,8 @@ const Creditcard = () => {
                                     <h2>Meus <b>Cartões</b></h2>
                                 </div>
                                 <div className="col-sm-6">
-                                    <a href="#addProdutoModal" className="btn btn-success" data-toggle="modal"><span>Novo Cartão</span></a>
-                                    <a href="#deletarProdutoModal" className="btn btn-danger" data-toggle="modal"><span>Deletar</span></a>						
+                                    <a href="#addCartaoModal" className="btn btn-success" data-toggle="modal"><span>Novo Cartão</span></a>
+                                    <a href="#deletarCartaoModal" className="btn btn-danger" data-toggle="modal"><span>Deletar</span></a>						
                                 </div>
                             </div>
                         </div>
@@ -52,10 +52,10 @@ const Creditcard = () => {
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <a href="#editProdutoModal" className="edit" data-toggle="modal"><button type="button" class="btn btn-warning" data-toggle="tooltip" title="Edit">Editar</button></a>
+                                        <a href="#editCartaoModal" className="edit" data-toggle="modal"><button type="button" class="btn btn-warning" data-toggle="tooltip" title="Edit">Editar</button></a>
                                     </td>
                                     <td>
-                                        <a href="#deletarProdutoModal" className="Deletar" data-toggle="modal"><button type="button" class="btn btn-danger" data-toggle="tooltip" title="Deletar">Deletar</button></a>
+                                        <a href="#deletarCartaoModal" className="Deletar" data-toggle="modal"><button type="button" class="btn btn-danger" data-toggle="tooltip" title="Deletar">Deletar</button></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -63,7 +63,7 @@ const Creditcard = () => {
                     </div>
                 </div>
             </div>
-            <div id="addProdutoModal" className="modal fade">
+            <div id="addCartaoModal" className="modal fade">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <form>
@@ -144,7 +144,7 @@ const Creditcard = () => {
                     </div>
                 </div>
             </div>
-            <div id="editProdutoModal" className="modal fade">
+            <div id="editCartaoModal" className="modal fade">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <form>
@@ -223,7 +223,7 @@ const Creditcard = () => {
                     </div>
                 </div>
             </div>
-            <div id="deletarProdutoModal" className="modal fade">
+            <div id="deletarCartaoModal" className="modal fade">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <form>
