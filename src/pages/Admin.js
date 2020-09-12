@@ -115,8 +115,10 @@ const Admin = () => {
                                     <input type="text" className="form-control" required></input>
                                 </div>
                                 <div className="form-group">
-                                    <label>Foto do Produto</label>
-                                    <input type="image" className="form-control" required></input>
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Foto do Produto</label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" required></input>
+                                </div>	
                                 </div>			
                             </div>
                             <div className="modal-footer" >
@@ -160,10 +162,10 @@ const Admin = () => {
                                     <label>Visualizações do Produto</label>
                                     <input type="text" className="form-control" required></input>
                                 </div>
-                                <div className="form-group">
-                                    <label>Foto do Produto</label>
-                                    <input type="image" className="form-control" required></input>
-                                </div>				
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Foto do Produto</label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" required></input>
+                                </div>			
                             </div>
                             <div className="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

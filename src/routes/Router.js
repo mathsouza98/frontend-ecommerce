@@ -3,6 +3,8 @@ import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Admin from '../pages/Admin'
 import Product from '../pages/Product'
+import Creditcard from '../pages/Creditcard'
+
 import {
   BrowserRouter,
   Switch,
@@ -26,6 +28,9 @@ export default function Router () {
           </Route>
           <Route path="/product/:id">
             <Product />
+          </Route>
+          <Route exact path='/creditcard'>
+            <Creditcard />
           </Route>
         </Switch>
       </BrowserRouter>
