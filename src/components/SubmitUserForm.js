@@ -5,35 +5,6 @@ import axios from 'axios';
 
 function SubmitUserForm({ requestMethod, data }) {
 
-//   async function insertProduct(values) {
-//     const response = await axios.post('http://localhost:8080/api/products/', values)
-//       .then(function (response) {
-//         console.log(response);
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-
-//   async function editProduct(id, values) {
-//     console.log(values)
-//     const response = await axios.put('http://localhost:8080/api/products/' + id, values)
-//       .then(function (response) {
-//         console.log(response);
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-
-//   function handleSubmit(values) {
-//     if (requestMethod === 'post') {
-//       insertProduct(values);
-//     } else if (requestMethod === 'put') {
-//       editProduct(data.id, values);
-//     }
-//   }
-
   return (
     <Formik
       initialValues={{ name: "", cpf_cnpj: "", street: "", number: "", nbhd: "", city: "", uf: "", zip: "", 
