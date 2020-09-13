@@ -35,7 +35,7 @@ export default class Products extends Component {
                     <p>{product.brand}</p>
                     <p>{product.price}</p>
                   </div>
-                  <a href="#" className="btn btn-primary" onClick={() => this.addProductOnCart(product.id)}>Comprar</a>
+                  <a href="/cart" className="btn btn-primary" onClick={() => this.addProductOnCart(product.id)}>Comprar</a>
                 </div>
               </div>
             </div>
