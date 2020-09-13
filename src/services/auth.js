@@ -13,11 +13,13 @@ class Auth {
     console.log(response)
     if (response.status === 200) {
       this.authenticated = true;
+      localStorage.setItem('authToken', response.data.accessToken);
     }
     cb();
   }
 
   logout(cb) {
+    localStorage.setItem('authToken', '')
     this.authenticated = false;
     cb();
   }
