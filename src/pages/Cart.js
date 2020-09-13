@@ -12,13 +12,11 @@ export default function Cart() {
   const [cartProductState, setCartProductState] = useState([]);
   const [loadState, setLoadState] = useState(false);
 
-  // console.log(auth.accessToken())
-  // if (auth.isAuthenticated) {
-  //   axios.defaults.headers.common['Authorization'] = auth.accessToken();
-  // }
-
   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
-  console.log(axios.defaults.headers['Authorization']);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -32,9 +30,15 @@ export default function Cart() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const deleteCartProduct = async (id) => {
+    try {
+      const result = await axios.delete('http://localhost:8080/api/cart-product/' + id);
+      fetchData();
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
@@ -78,7 +82,7 @@ export default function Cart() {
                           </div>
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <a href="#!" type="button" className="card-link-secondary small text-uppercase mr-3" ><i
+                              <a href="#!" type="button" className="card-link-secondary small text-uppercase mr-3" onClick={() => deleteCartProduct(product.id)} ><i
                                 className="fas fa-trash-alt mr-1"></i> Remover Item </a>
                             </div>
                             <p className="mb-0"><span><strong id="summary">R$ {product.price}</strong></span></p>
