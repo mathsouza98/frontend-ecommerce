@@ -9,14 +9,19 @@ export default function Admin() {
   const [productState, setProductState] = useState([]);
   const [selectedProductState, setSelectedProductState] = useState([]);
 
-  async function fetchData() {
-    const response = await axios.get('http://localhost:8080/api/products')
-    setProductState(response.data);      
-  }
+  const fetchData = async () => {
+    try {
+      const result = await axios.get('http://localhost:8080/api/products');
+      setProductState(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
-  }, [productState]);
+  }, []);
+
 
   return (
     <div>
@@ -77,6 +82,7 @@ export default function Admin() {
                       <button
                         onClick={async () => axios.delete('http://localhost:8080/api/products/' + product.id)
                           .then(function (response) {
+                            fetchData();
                             console.log(response);
                           })
                           .catch(function (error) {
