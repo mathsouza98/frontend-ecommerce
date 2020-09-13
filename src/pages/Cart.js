@@ -3,17 +3,33 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import ReactDOM from "react-dom";
+import auth from '../services/auth';
+import findProductAssets from '../utils/findProductAssets';
 
 export default function Cart() {
   const [selectBoxState, setSelectBoxState] = useState(1);
   const [cartState, setCartState] = useState([]);
+  const [cartProductState, setCartProductState] = useState([]);
   const [loadState, setLoadState] = useState(false);
 
-  axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBpbmluaG8iLCJpYXQiOjE1OTk5NTkxNTcsImV4cCI6MTYwMDA0NTU1N30.P85wGXPowhT04s9dKlhF-Xc8F7eLWHBzI_K9fk5KYEE"
+  // console.log(auth.accessToken())
+  // if (auth.isAuthenticated) {
+  //   axios.defaults.headers.common['Authorization'] = auth.accessToken();
+  // }
+
+  axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
+  console.log(axios.defaults.headers['Authorization']);
 
   const fetchData = async () => {
-    const result = await axios.get('http://localhost:8080/api/cart');
-    setCartState(result.data.productList);
+    try {
+      const result = await axios.get('http://localhost:8080/api/cart');
+      setCartState(result.data);
+      setCartProductState(result.data.productList)
+      console.log(result.data)
+    } catch (error) {
+      console.log(error)
+      setCartState(null)
+    }
   };
 
   useEffect(() => {
@@ -29,20 +45,20 @@ export default function Cart() {
             <div className="col-lg-8">
               <div className="mb-3">
                 <div className="pt-4 wish-list">
-                  <h5 className="mb-4">Carrinho (<span>1</span> item)</h5>
-                  <div className="row mb-4">
-                    <div className="col-md-5 col-lg-3 col-xl-3">
-                      <div className="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                        <img className="img-fluid w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample" />
-                        <a href="#!" >
-                          <div className="mask">
-                            <div className="mask rgba-black-slight"></div>
-                          </div>
-                        </a>
+                  <h5 className="mb-4">Carrinho (<span>{cartState === null ? 0 : cartProductState.length}</span> item)</h5>
+                  {cartProductState.map(product => (
+                    <div key={product.id} className="row mb-4">
+                      <div className="col-md-5 col-lg-3 col-xl-3">
+                        <div className="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                          <img className="img-fluid w-100" src={findProductAssets(product.category)} alt="" srcSet={findProductAssets(product.category)} />
+                          <a href="#!" >
+                            <div className="mask">
+                              <div className="mask rgba-black-slight"></div>
+                            </div>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                    {cartState.map(product => (
-                      <div key={product.id} className="col-md-7 col-lg-9 col-xl-9">
+                      <div className="col-md-7 col-lg-9 col-xl-9">
                         <div>
                           <div className="d-flex justify-content-between">
                             <div>
@@ -65,12 +81,12 @@ export default function Cart() {
                               <a href="#!" type="button" className="card-link-secondary small text-uppercase mr-3" ><i
                                 className="fas fa-trash-alt mr-1"></i> Remover Item </a>
                             </div>
-                            <p className="mb-0"><span><strong id="summary">{product.price}</strong></span></p>
+                            <p className="mb-0"><span><strong id="summary">R$ {product.price}</strong></span></p>
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                   <a href="/" className="btn btn-warning" role="button" aria-pressed="true">Continuar Comprando</a>
                 </div>
               </div>
@@ -102,7 +118,7 @@ export default function Cart() {
                   <h5 className="mb-3">Total</h5>
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                      Subtotal<span>$25.98</span>
+                      Subtotal<span>R$ {cartState === null ? 0 : cartState.finalPrice}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                       Frete<span>Gratis</span>
@@ -114,7 +130,7 @@ export default function Cart() {
                           <p className="mb-0">(com frete)</p>
                         </strong>
                       </div>
-                      <span><strong>$53.98</strong></span>
+                      <span><strong>R$ {cartState === null ? 0 : cartState.finalPrice}</strong></span>
                     </li>
                   </ul>
                   <button type="button" className="btn btn-primary btn-block">Finalizar Compra</button>
