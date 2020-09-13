@@ -6,14 +6,18 @@ class Auth {
   }
 
   async login(username, password, cb) {
-    const response = await axios.post('http://localhost:8080/api/auth/signin', {
-      username: username,
-      password: password
-    })
-    console.log(response)
-    if (response.status === 200) {
-      this.authenticated = true;
-      localStorage.setItem('authToken', response.data.accessToken);
+    try {
+      const response = await axios.post('http://localhost:8080/api/auth/signin', {
+        username: username,
+        password: password
+      })
+      console.log(response)
+      if (response.status === 200) {
+        this.authenticated = true;
+        localStorage.setItem('authToken', response.data.accessToken);
+      }
+    } catch (error) {
+      alert("Não foi possível efetuar login\n" + error);
     }
     cb();
   }
