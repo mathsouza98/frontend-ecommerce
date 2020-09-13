@@ -1,9 +1,24 @@
-import React, { Component, useState } from 'react';
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-
+import axios from 'axios';
+import ReactDOM from "react-dom";
 
 export default function Cart() {
   const [selectBoxState, setSelectBoxState] = useState(1);
+  const [cartState, setCartState] = useState([]);
+  const [loadState, setLoadState] = useState(false);
+
+  axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBpbmluaG8iLCJpYXQiOjE1OTk5NTkxNTcsImV4cCI6MTYwMDA0NTU1N30.P85wGXPowhT04s9dKlhF-Xc8F7eLWHBzI_K9fk5KYEE"
+
+  const fetchData = async () => {
+    const result = await axios.get('http://localhost:8080/api/cart');
+    setCartState(result.data.productList);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -26,34 +41,35 @@ export default function Cart() {
                         </a>
                       </div>
                     </div>
-                    <div className="col-md-7 col-lg-9 col-xl-9">
-                      <div>
-                        <div className="d-flex justify-content-between">
-                          <div>
-                            <h5>Blue denim shirt</h5>
-                            <p className="mb-3 text-muted text-uppercase small">Shirt - blue</p>
-                            <p className="mb-2 text-muted text-uppercase small">Color: blue</p>
-                            <p className="mb-3 text-muted text-uppercase small">Size: M</p>
-                          </div>
-                          <div>
-                            <div className="def-number-input number-input safari_only mb-0 w-100">
-                              <button onClick={() => selectBoxState > 1 ? setSelectBoxState(selectBoxState - 1) : ''}
-                                className="button"><span>-</span></button>
-                              <input readOnly={selectBoxState} value={selectBoxState} style={{ width: '35px', textAlign: 'center' }} />
-                              <button onClick={() => setSelectBoxState(selectBoxState + 1)} className="button"><span>+</span></button>
+                    {cartState.map(product => (
+                      <div key={product.id} className="col-md-7 col-lg-9 col-xl-9">
+                        <div>
+                          <div className="d-flex justify-content-between">
+                            <div>
+                              <h5>{product.name}</h5>
+                              <p className="mb-3 text-muted text-uppercase small">{product.brand}</p>
+                              <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
                             </div>
-                            <small id="passwordHelpBlock" className="form-text text-muted text-center" >Quantidade</small>
+                            <div>
+                              <div className="def-number-input number-input safari_only mb-0 w-100">
+                                <button onClick={() => selectBoxState > 1 ? setSelectBoxState(selectBoxState - 1) : ''}
+                                  className="button"><span>-</span></button>
+                                <input readOnly={selectBoxState} value={selectBoxState < product.orderQuantity ? product.orderQuantity : selectBoxState} style={{ width: '35px', textAlign: 'center' }} />
+                                <button onClick={() => setSelectBoxState(selectBoxState + 1)} className="button"><span>+</span></button>
+                              </div>
+                              <small id="passwordHelpBlock" className="form-text text-muted text-center" >Quantidade</small>
+                            </div>
                           </div>
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <div>
-                            <a href="#!" type="button" className="card-link-secondary small text-uppercase mr-3" ><i
-                              className="fas fa-trash-alt mr-1"></i> Remover Item </a>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <div>
+                              <a href="#!" type="button" className="card-link-secondary small text-uppercase mr-3" ><i
+                                className="fas fa-trash-alt mr-1"></i> Remover Item </a>
+                            </div>
+                            <p className="mb-0"><span><strong id="summary">{product.price}</strong></span></p>
                           </div>
-                          <p className="mb-0"><span><strong id="summary">$17.99</strong></span></p> {/*</p className="mb-0"> */}
                         </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                   <a href="/" className="btn btn-warning" role="button" aria-pressed="true">Continuar Comprando</a>
                 </div>
