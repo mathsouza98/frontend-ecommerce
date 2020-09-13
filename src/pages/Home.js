@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Products from './Products';
 
-const Home = () => {
+const Home = props => {
   return (
     <div>
       <Navbar />

@@ -26,9 +26,7 @@ export default function Router() {
           </Route>
           <Route exact path='/login' component={Login} />
           <ProtectedRoute exact path="/admin" component={Admin} />
-          <Route exact path='/admin'>
-            <Admin />
-          </Route>
+          {/* <ProtectedRoute exact path="/cart" component={Cart} /> */}
         </Switch>
       </BrowserRouter>
     </>
