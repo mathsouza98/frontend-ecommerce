@@ -103,15 +103,9 @@ export default function Cart() {
               <div className="mb-3">
                 <div className="pt-4">
                   <h5 className="mb-4">Pague com</h5>
-                  <img className="mr-2" width="45px"
-                    src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                    alt="Visa" />
-                  <img className="mr-2" width="45px"
-                    src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                    alt="Mastercard" />
-                  <img className="mr-2" width="45px"
-                    src="/#"
-                    alt="Boleto Bancario" />
+                  <img className="mr-2" width="45px" src={require('../assets/visa.svg')} alt="Visa" />
+                  <img className="mr-2" width="45px" src={require('../assets/mastercard.svg')} alt="Mastercard" />
+                  <img className="mr-2" width="45px" src={require('../assets/boleto.png')} alt="Boleto Bancario" />
                 </div>
               </div>
 
