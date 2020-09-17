@@ -25,6 +25,9 @@ export default function Router() {
           <Route exact path='/account'>
             <Account />
           </Route>
+          <Route exact path='/payment'>
+            <Account />
+          </Route>
           <Route exact path='/login' component={Login} />
           <ProtectedRoute exact path="/admin" component={Admin} />
           {/* <ProtectedRoute exact path="/cart" component={Cart} /> */}

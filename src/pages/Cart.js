@@ -7,7 +7,7 @@ import auth from '../services/auth';
 import findProductAssets from '../utils/findProductAssets';
 
 export default function Cart() {
-  const [selectBoxState, setSelectBoxState] = useState(1);
+  const [selectBoxState, setSelectBoxState] = useState({});
   const [cartState, setCartState] = useState([]);
   const [cartProductState, setCartProductState] = useState([]);
   const [loadState, setLoadState] = useState(false);
@@ -16,7 +16,7 @@ export default function Cart() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [selectBoxState]);
 
   const fetchData = async () => {
     try {
@@ -35,6 +35,16 @@ export default function Cart() {
       const result = await axios.delete('http://localhost:8080/api/cart-product/' + id);
       fetchData();
       console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleIncDecProductOrder = async (id, operator) => {
+    try {
+      const result = await axios.post('http://localhost:8080/api/cart-product/' + id + '/' + operator);
+      console.log(result);
+      fetchData();
     } catch (error) {
       console.log(error);
     }
@@ -72,10 +82,10 @@ export default function Cart() {
                             </div>
                             <div>
                               <div className="def-number-input number-input safari_only mb-0 w-100">
-                                <button onClick={() => selectBoxState > 1 ? setSelectBoxState(selectBoxState - 1) : ''}
+                                <button onClick={() => product.orderQuantity > 1 ? handleIncDecProductOrder(product.id, "decrement") : ''}
                                   className="button"><span>-</span></button>
-                                <input readOnly={selectBoxState} value={selectBoxState < product.orderQuantity ? product.orderQuantity : selectBoxState} style={{ width: '35px', textAlign: 'center' }} />
-                                <button onClick={() => setSelectBoxState(selectBoxState + 1)} className="button"><span>+</span></button>
+                                <input readOnly={product.orderQuantity} value={product.orderQuantity} style={{ width: '35px', textAlign: 'center' }} />
+                                <button onClick={() => handleIncDecProductOrder(product.id, "increment")} className="button"><span>+</span></button>
                               </div>
                               <small id="passwordHelpBlock" className="form-text text-muted text-center" >Quantidade</small>
                             </div>
@@ -131,7 +141,7 @@ export default function Cart() {
                       <span><strong>R$ {cartState === null ? 0 : cartState.finalPrice}</strong></span>
                     </li>
                   </ul>
-                  <button type="button" className="btn btn-primary btn-block">Finalizar Compra</button>
+                  <a  className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
                 </div>
               </div>
               <div className="mb-3">
