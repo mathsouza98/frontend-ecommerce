@@ -7,16 +7,14 @@ import auth from '../services/auth';
 import findProductAssets from '../utils/findProductAssets';
 
 export default function Cart() {
-  const [selectBoxState, setSelectBoxState] = useState({});
   const [cartState, setCartState] = useState([]);
   const [cartProductState, setCartProductState] = useState([]);
-  const [loadState, setLoadState] = useState(false);
 
   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
 
   useEffect(() => {
     fetchData();
-  }, [selectBoxState]);
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -141,7 +139,7 @@ export default function Cart() {
                       <span><strong>R$ {cartState === null ? 0 : cartState.finalPrice}</strong></span>
                     </li>
                   </ul>
-                  <a  className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
+                  <a className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
                 </div>
               </div>
               <div className="mb-3">
