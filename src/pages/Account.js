@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Contact } from '../components/index';
+import { Navbar, Contact, PaymentCard } from '../components/index';
 
 export default function Account() {
 
@@ -7,6 +7,7 @@ export default function Account() {
     <>
       <Navbar />
       <Contact />
+      <PaymentCard />
     </>
   );
 }
