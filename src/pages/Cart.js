@@ -139,7 +139,7 @@ export default function Cart() {
                       <span><strong>R$ {cartState === null ? 0 : cartState.finalPrice}</strong></span>
                     </li>
                   </ul>
-                  <a className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
+                  <a style={{ color: '#fff' }} className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
                 </div>
               </div>
               <div className="mb-3">
