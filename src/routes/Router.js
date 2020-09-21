@@ -1,6 +1,6 @@
 import React from 'react'
 import { Home, Login, Admin, Account, Cart, UserRegistry, OrderPage } from '../pages/index'
-import ProtectedRoute from './ProtectedRouter'
+import { AdminProtectedRoute, UserProtectedRoute } from './index'
 import {
   BrowserRouter,
   Switch,
@@ -29,8 +29,8 @@ export default function Router() {
             <Account />
           </Route>
           <Route exact path='/login' component={Login} />
-          <ProtectedRoute exact path="/admin" component={Admin} />
-          <ProtectedRoute exact path="/order" component={OrderPage} />
+          <AdminProtectedRoute exact path="/admin" component={Admin} />
+          <UserProtectedRoute exact path="/order" component={OrderPage} />
           {/* <ProtectedRoute exact path="/cart" component={Cart} /> */}
         </Switch>
       </BrowserRouter>
