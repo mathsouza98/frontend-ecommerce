@@ -5,7 +5,7 @@ import axios from 'axios';
 import { SubmitPaymentCardForm } from './index';
 import style from '../styles/adminStyle.css';
 
-function Contact() {
+function PaymentCard() {
   const [paymentCardState, setPaymentCardState] = useState([])
 
   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
@@ -62,25 +62,23 @@ function Contact() {
                     <Form>
                       <div className="col-sm-12">
                         <div className="row">
-                          <div className="col-sm-6 form-group">
+                          <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                             <label>Número</label>
                             <Field name="number" type="text" placeholder={paymentCard.number} className="form-control" required></Field>
                           </div>
-                          <div className="col-sm-6 form-group">
+                          <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                             <label>Nome impresso no cartão</label>
                             <Field name="holderName" type="text" placeholder={paymentCard.holderName} className="form-control" required></Field>
                           </div>
-                        </div>
-                        <div className="row">
-                          <div className="col-sm-4 form-group">
+                          <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                             <label>Data de expedição</label>
                             <Field name="expDate" type="text" placeholder={paymentCard.expDate} className="form-control" required></Field>
                           </div>
-                          <div className="col-sm-4 form-group">
+                          <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                             <label>Bandeira</label>
                             <Field name="banner" type="text" placeholder={paymentCard.banner} className="form-control" required></Field>
                           </div>
-                          <div className="col-sm-4 form-group">
+                          <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                             <label>Código de segurança</label>
                             <Field name="secCode" type="text" placeholder={paymentCard.secCode} className="form-control" required></Field>
                           </div>
@@ -95,8 +93,8 @@ function Contact() {
                 </div>
               </div>
             ))}
-            <div className="card">
-              <button href="#addPaymentCardModal" className="btn btn-primary" data-toggle="modal">Adicionar cartão</button>
+            <div style={{ textAlign: 'center' }}>
+              <button style={{ padding: '10px 60px' }} href="#addPaymentCardModal" className="btn btn-primary" data-toggle="modal">Adicionar cartão</button>
             </div>
           </div>
         </div>
@@ -107,7 +105,7 @@ function Contact() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title">Adicionar Produto</h4>
+              <h4 className="modal-title">Adicionar cartão</h4>
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div className="modal-body">
@@ -120,4 +118,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default PaymentCard;

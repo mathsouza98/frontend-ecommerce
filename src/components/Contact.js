@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Formik, Field, Form } from "formik";
 import axios from 'axios';
+import userRegistryStyle from '../styles/userRegistryStyle.css';
 
 function Contact() {
   const [contactState, setContactState] = useState([])
@@ -35,33 +36,31 @@ function Contact() {
 
   return (
     <div className="container-fluid">
-      <Formik
-        initialValues={{ email: "", cellPhone: "", homePhone: "", commercialPhone: "" }}
-        onSubmit={values => editUserContact(values)}
-      >
-        <div className="container">
-          <h1 className="well" style={{ marginTop: '40px' }}>Contato</h1>
-          <div className="col-lg-12 well">
-            <div className="row">
-              <div className="card" style={{ padding: '20px' }}>
+      <div className="container">
+        <h1 className="well" style={{ marginTop: '40px' }}>Contato</h1>
+        <div className="col-lg-12">
+          <div className="row">
+            <div className="card" style={{ padding: '20px' }}>
+              <Formik
+                initialValues={{ email: "", cellPhone: "", homePhone: "", commercialPhone: "" }}
+                onSubmit={values => editUserContact(values)}
+              >
                 <Form>
                   <div className="col-sm-12">
                     <div className="row">
-                      <div className="col-sm-6 form-group">
+                      <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                         <label>Celular</label>
                         <Field name="cellPhone" type="text" placeholder={contactState.cellPhone} className="form-control" required></Field>
                       </div>
-                      <div className="col-sm-6 form-group">
+                      <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                         <label>Telefone Residencial</label>
                         <Field name="homePhone" type="text" placeholder={contactState.homePhone} className="form-control" required></Field>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-sm-6 form-group">
+                      <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                         <label>Telefone Comercial</label>
                         <Field name="commercialPhone" type="text" placeholder={contactState.commercialPhone} className="form-control" required></Field>
                       </div>
-                      <div className="col-sm-6 form-group">
+                      <div className="col-sm-12 col-md-6 col-lg-4 form-group">
                         <label>E-mail</label>
                         <Field name="email" type="text" placeholder={contactState.email} className="form-control" required></Field>
                       </div>
@@ -71,11 +70,11 @@ function Contact() {
                     </div>
                   </div>
                 </Form>
-              </div>
+              </Formik>
             </div>
           </div>
         </div>
-      </Formik>
+      </div>
     </div>
   );
 }

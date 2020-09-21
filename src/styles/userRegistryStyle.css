@@ -78,3 +78,11 @@ body {
     border-bottom: 0;
   }
 }
+
+.card {
+  width: 100%;
+}
+
+.col-sm-12.col-md-6.col-lg-4.form-group {
+  display: grid;
+}
