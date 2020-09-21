@@ -1,8 +1,6 @@
 import React from 'react'
-import { Home, Login, Admin, Products, Product } from '../pages/index'
+import { Home, Login, Admin, Account, Cart, UserRegistry } from '../pages/index'
 import ProtectedRoute from './ProtectedRouter'
-import UserRegistry from '../pages/UserRegistry'
-import Cart from '../pages/Cart'
 import {
   BrowserRouter,
   Switch,
@@ -23,6 +21,12 @@ export default function Router() {
           </Route>
           <Route exact path='/register'>
             <UserRegistry />
+          </Route>
+          <Route exact path='/account'>
+            <Account />
+          </Route>
+          <Route exact path='/payment'>
+            <Account />
           </Route>
           <Route exact path='/login' component={Login} />
           <ProtectedRoute exact path="/admin" component={Admin} />
