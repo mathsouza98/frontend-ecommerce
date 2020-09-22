@@ -15,18 +15,6 @@ function Address() {
     fetchData()
   }, []);
 
-  async function editUserAddress(values, id) {
-    console.log(values)
-    console.log(id)
-    try {
-      const response = await axios.put("http://localhost:8080/api/account/address/" + id, values);
-      fetchData();
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async function deleteAddress(id) {
     try {
       const response = await axios.delete("http://localhost:8080/api/account/address/" + id);
