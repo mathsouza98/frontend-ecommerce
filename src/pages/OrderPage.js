@@ -1,11 +1,11 @@
 import React from 'react';
-import { Navbar } from '../components/index';
+import { Address, Navbar, SelectAddress } from '../components/index';
 
 const OrderPage = props => {
   return (
     <div>
       <Navbar />
-      <Products />
+      <SelectAddress />
     </div>
   );
 }
