@@ -9,7 +9,7 @@ export default class RecommendedProducts extends Component {
   }
 
   async componentDidMount() {
-    const response = await axios.get('http://localhost:8080/api/products-for-you');
+    const response = await axios.get('http://localhost:8080/api/recommend/products');
     this.setState({ products: response.data });
   }
 
