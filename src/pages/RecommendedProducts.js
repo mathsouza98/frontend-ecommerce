@@ -9,6 +9,7 @@ export default class RecommendedProducts extends Component {
   }
 
   async componentDidMount() {
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
     const response = await axios.get('http://localhost:8080/api/recommend/products');
     this.setState({ products: response.data });
   }
@@ -24,7 +25,7 @@ export default class RecommendedProducts extends Component {
         <h1>Recomendados para Você!</h1>
         <div className="row" style={{ margin: '30px 0px', justifyContent: 'center' }}>
           {this.state.products.map(product => (
-            <div key={product.id} className="col-sm-12 col-md-6 col-lg-4">
+            <div key={product.productId} className="col-sm-12 col-md-6 col-lg-4">
               <div className="card" style={{ width: '100%', marginBottom: '20px' }}>
                 <img className="card-img-top" src={findProductAssets(product.category)} alt="" srcSet={findProductAssets(product.category)} />
                 <div className="card-body" style={{ textAlign: 'center' }}>
@@ -35,7 +36,7 @@ export default class RecommendedProducts extends Component {
                     <p>{product.brand}</p>
                     <p>{product.price}</p>
                   </div>
-                  <a href="/cart" className="btn btn-primary" onClick={() => this.addProductOnCart(product.id)}>Comprar</a>
+                  <a href="/cart" className="btn btn-primary" onClick={() => this.addProductOnCart(product.productId)}>Comprar</a>
                 </div>
               </div>
             </div>

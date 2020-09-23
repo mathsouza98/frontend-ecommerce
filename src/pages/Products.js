@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import productAssets from '../assets/productAssets';
-import axios from 'axios'
+import axios from 'axios';
 import findProductAssets from '../utils/findProductAssets';
 
 export default class Products extends Component {
