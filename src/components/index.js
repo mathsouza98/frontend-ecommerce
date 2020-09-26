@@ -7,3 +7,4 @@ export { default as SubmitAddressForm } from './SubmitAddressForm';
 export { default as PaymentCard } from './PaymentCard';
 export { default as Address } from './Address';
 export { default as SelectAddress } from './SelectAddress';
+export { default as SelectPaymentCard } from './SelectPaymentCard';

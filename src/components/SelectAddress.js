@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 /*
+    @param {string} id;
     @param {string} street;
     @param {string} number;
     @param {string} neighborhood;
@@ -30,8 +31,10 @@ function SelectAddress() {
   const checkAddressEvent = (id) => {
     if (selectAddressIdState === id) {
       setSelectedAddressIdState('');
+      localStorage.setItem('addressId', '');
     } else {
       setSelectedAddressIdState(id);
+      localStorage.setItem('addressId', id);
     }
 
     addressState.map(address => (address.id !== id ? document.getElementById(address.id).checked = false : ''));
