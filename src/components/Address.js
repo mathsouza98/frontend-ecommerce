@@ -5,35 +5,27 @@ import axios from 'axios';
 import { SubmitAddressForm } from './index';
 import style from '../styles/adminStyle.css';
 import userRegistryStyle from '../styles/userRegistryStyle.css';
+import { editUserAddress, deleteAddress } from '../services/AddressService';
 
 function Address() {
   const [addressState, setAddressState] = useState([])
 
   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
 
-  useEffect(() => {
-    fetchData()
-  }, []);
-
-  async function deleteAddress(id) {
-    try {
-      const response = await axios.delete("http://localhost:8080/api/account/address/" + id);
-      console.log(response);
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function fetchData() {
+  const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/account/address");
-      setAddressState(response.data);
       console.log(response);
+      setAddressState(response.data);
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
