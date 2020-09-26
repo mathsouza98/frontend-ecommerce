@@ -3,18 +3,39 @@ import { Address, Navbar, SelectAddress, SelectPaymentCard } from '../components
 import axios from 'axios';
 import { useEffect } from 'react';
 
-const OrderPage = props => {
+const Order = props => {
+  axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
 
   useEffect(() => {
     localStorage.setItem('addressId', '');
     localStorage.setItem('paymentCardId', '');
   }, [])
 
-  const requestOrder = () => {
+  const requestOrder = async (installmentNumber) => {
     const addressId = localStorage.getItem('addressId');
     const paymentCardId = localStorage.getItem('paymentCardId');
 
-    console.log(addressId, paymentCardId)
+    if (addressId === '') {
+      alert("Selecione um endereço")
+      return
+    }
+
+    if (paymentCardId === '') {
+      alert("Selecione um cartão")
+      return
+    }
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/account/orders', {
+        addressId: addressId,
+        paymentCardId: paymentCardId,
+        installmentNumber: installmentNumber
+      });
+      console.log(response);
+      window.location.href = "http://localhost:3000/order/" + response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -31,4 +52,4 @@ const OrderPage = props => {
   );
 }
 
-export default OrderPage;
+export default Order;
