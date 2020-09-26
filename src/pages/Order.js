@@ -32,7 +32,7 @@ const Order = props => {
         installmentNumber: installmentNumber
       });
       console.log(response);
-      window.location.href = "http://localhost:3000/order/" + response.data;
+      window.location.href = "http://localhost:3000/bill/" + response.data;
     } catch (error) {
       console.log(error);
     }
