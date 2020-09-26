@@ -16,6 +16,7 @@ export default class Products extends Component {
   async addProductOnCart(id) {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
     const response = await axios.post('http://localhost:8080/api/cart/' + id);
+    console.log(response)
   }
 
   render() {
