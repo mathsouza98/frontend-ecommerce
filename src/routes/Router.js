@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, Login, Admin, Account, Cart, UserRegistry, Order, OrderError, Bill, Users, SubmitRoleBasedUserForm } from '../pages/index'
+import { Home, Login, Admin, Account, Cart, UserRegistry, ProductScreen, Order, OrderError, Bill, Users, SubmitRoleBasedUserForm } from '../pages/index'
 import { AdminProtectedRoute, UserProtectedRoute } from './index'
 import {
   BrowserRouter,
@@ -35,6 +35,7 @@ export default function Router() {
           <UserProtectedRoute exact path="/order" component={Order} />
           <UserProtectedRoute exact path="/order/500" component={OrderError} />
           <UserProtectedRoute exact path="/bill/:orderId" component={Bill} />
+          <UserProtectedRoute exact path="/product/:productId" component={ProductScreen} />
           {/* <ProtectedRoute exact path="/cart" component={Cart} /> */}
         </Switch>
       </BrowserRouter>

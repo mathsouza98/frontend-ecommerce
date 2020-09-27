@@ -10,3 +10,4 @@ export { default as OrderError } from './OrderError';
 export { default as Bill } from './Bill';
 export { default as SubmitRoleBasedUserForm } from './SubmitRoleBasedUserForm';
 export { default as Products } from './Products';
+export { default as ProductScreen } from './ProductScreen';
