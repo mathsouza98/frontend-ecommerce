@@ -14,7 +14,6 @@ export default class Products extends Component {
     this.setState({ products: response.data });
   }
 
-<<<<<<< HEAD
   // async addProductOnCart(id) {
   //   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
   //   const response = await axios.post('http://localhost:8080/api/cart/' + id);
@@ -24,12 +23,6 @@ export default class Products extends Component {
     // axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
     const response = await axios.get('http://localhost:8080/api/products/' + id);
     // this.setState({ products: response.data });
-=======
-  async addProductOnCart(id) {
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
-    const response = await axios.post('http://localhost:8080/api/cart/' + id);
-    console.log(response)
->>>>>>> 5f207a9781a3de0cc9563143fc6dff3bb4444e2f
   }
 
   render() {
