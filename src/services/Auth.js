@@ -26,6 +26,7 @@ class Auth {
   logout(cb) {
     localStorage.setItem('authToken', '');
     localStorage.setItem('isLogged', false);
+    localStorage.setItem('user_roles', []);
     this.userRole = [];
     cb();
   }
