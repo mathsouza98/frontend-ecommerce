@@ -27,6 +27,8 @@ export default function Admin() {
     <div>
       <Navbar />
       <div className="container-xl" style={{ margin: 0, maxWidth: '100%' }}>
+        <a className="btn btn-primary" style={{ marginTop: "30px" }} href="/admin/users">Usuários</a>
+        <a className="btn btn-primary" style={{ marginTop: "30px", marginLeft: '30px' }} href="/admin/users/submit">Cadastrar Usuário</a>
         <div className="table-responsive">
           <div className="table-wrapper">
             <div className="table-title">
