@@ -3,22 +3,14 @@ import ReactDOM from "react-dom";
 import { Formik, Field, Form } from "formik";
 import axios from 'axios';
 import style from '../styles/addressStyle.css'
+import { insertAddress } from '../services/AddressService';
 
-function SubmitPaymentCardForm() {
-
-  async function insertPaymentCard(values) {
-    try {
-      const response = await axios.post('http://localhost:8080/api/account/address', values);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+function SubmitAddressForm() {
 
   return (
     <Formik
       initialValues={{ street: "", number: "", neighborhood: "", zip: "", city: "", fedUnit: "" }}
-      onSubmit={values => insertPaymentCard(values)}
+      onSubmit={values => insertAddress(values)}
     >
       <Form>
         <div className="form-group">
@@ -54,5 +46,5 @@ function SubmitPaymentCardForm() {
   );
 }
 
-export default SubmitPaymentCardForm;
+export default SubmitAddressForm;
 

@@ -2,7 +2,6 @@ import axios from 'axios';
 
 class Auth {
   constructor() {
-    this.authenticated = false;
     this.userRole = null;
   }
 
@@ -14,9 +13,9 @@ class Auth {
       })
       console.log(response)
       if (response.status === 200) {
-        this.authenticated = true;
-        this.userRole = response.data.roles;
         localStorage.setItem('authToken', response.data.accessToken);
+        localStorage.setItem('user_roles', response.data.roles);
+        localStorage.setItem('isLogged', true);
       }
     } catch (error) {
       alert("Não foi possível efetuar login\n" + error);
@@ -25,18 +24,22 @@ class Auth {
   }
 
   logout(cb) {
-    localStorage.setItem('authToken', '')
-    this.authenticated = false;
+    localStorage.setItem('authToken', '');
+    localStorage.setItem('isLogged', false);
+    localStorage.setItem('user_roles', []);
     this.userRole = [];
     cb();
   }
 
   isAuthenticated() {
-    return this.authenticated;
+    const isAuthenticated = localStorage.getItem('isLogged');
+    return isAuthenticated;
   }
 
   isUserAdmin() {
-    if (this.userRole.includes("ROLE_ADMIN")) return true;
+    const userRoles = localStorage.getItem('user_roles');
+
+    if (userRoles.includes("ROLE_ADMIN")) return true;
 
     return false;
   }
