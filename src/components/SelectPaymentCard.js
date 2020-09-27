@@ -45,7 +45,7 @@ function SelectPaymentCard() {
 
   return (
     <div className="container">
-      <h4 style={{ margin: '30px 0px' }}>Selecione o endereço de entrega</h4>
+      <h4 style={{ margin: '30px 0px' }}>Selecione um cartão</h4>
       <div className="card">
         <table className="table">
           <thead>
@@ -53,7 +53,7 @@ function SelectPaymentCard() {
               <th scope="col">Selecione</th>
               <th scope="col">Titular do cartão</th>
               <th scope="col">Número</th>
-              <th scope="col">Validado até</th>
+              <th scope="col">Valido até</th>
               <th scope="col">Bandeira</th>
             </tr>
           </thead>
