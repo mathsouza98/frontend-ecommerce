@@ -26,9 +26,7 @@ export default function Admin() {
   return (
     <div>
       <Navbar />
-      <div className="container-xl" style={{ margin: 0, maxWidth: '100%' }}>
-        <a className="btn btn-primary" style={{ marginTop: "30px" }} href="/admin/users">Usuários</a>
-        <a className="btn btn-primary" style={{ marginTop: "30px", marginLeft: '30px' }} href="/admin/users/submit">Cadastrar Usuário</a>
+      <div className="container-xl">
         <div className="table-responsive">
           <div className="table-wrapper">
             <div className="table-title">
@@ -77,7 +75,7 @@ export default function Admin() {
                     <td>{product.brand}</td>
                     <td>{product.stockQuantity}</td>
                     <td>{product.totalVisualization}</td>
-                    <td style={{ paddingRight: '0px' }}>
+                    <td>
                       <a href="#editProdutoModal" data-toggle="modal"><button type="button" className="btn btn-warning" data-toggle="tooltip" title="Edit" onClick={() => setSelectedProductState(product)}>Editar</button></a>
                     </td>
                     <td>
