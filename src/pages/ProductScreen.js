@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import productAssets from '../assets/productAssets';
+import React, { useEffect, Component } from 'react';
 import axios from 'axios';
 import findProductAssets from '../utils/findProductAssets';
+import { Navbar } from '../components/index';
 
-export default class Products extends Component {
-  state = {
-    products: []
-  }
+export default function ProductScreen(props) {
+    useEffect(() => {
+        showProduct();
+        }, []);
 
-  async componentDidMount() {
-    const response = await axios.get('http://localhost:8080/api/products');
+  const showProduct = async () => {
+    const response = await axios.get('http://localhost:8080/api/products/' + props.id);
     this.setState({ products: response.data });
-  }
+  };
 
-  // async addProductOnCart(id) {
-  //   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
-  //   const response = await axios.post('http://localhost:8080/api/cart/' + id);
-  // }
+//   async componentDidMount() {
+//     const response = await axios.get('http://localhost:8080/api/products/{id}');
+//     this.setState({ products: response.data });
+//   }
 
-  async goToProductScreen(id) {
-    // axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
-    const response = await axios.get('http://localhost:8080/api/products/' + id);
-    // this.setState({ products: response.data });
-  }
+  const addProductOnCart = async (id) => {
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
+    const response = await axios.post('http://localhost:8080/api/cart/' + id);
+  };
 
-  render() {
     return (
+      <div>
+      <Navbar />
       <div className="container-fluid">
-        <h1>Produtos</h1>
+        {/* <h1>Produtos</h1> */}
         <div className="row" style={{ margin: '30px 0px', justifyContent: 'center' }}>
-          {this.state.products.map(product => (
+          {cartProductState.map(product => (
             <div key={product.id} className="col-sm-12 col-md-6 col-lg-4">
               <div className="card" style={{ width: '100%', marginBottom: '20px' }}>
                 <img className="card-img-top" src={findProductAssets(product.category)} alt="" srcSet={findProductAssets(product.category)} />
@@ -41,14 +41,14 @@ export default class Products extends Component {
                     <p>{product.brand}</p>
                     <p>{product.price}</p>
                   </div>
-                  <a href="/product/{id}" className="btn btn-primary" >Visualizar</a>
+                  <a href="/cart" className="btn btn-primary" onClick={() => addProductOnCart(product.id)}>Adicionar ao Carrinho</a>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      </div>
     );
   }
-}
 

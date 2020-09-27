@@ -36,7 +36,7 @@ export default class RecommendedProducts extends Component {
                     <p>{product.brand}</p>
                     <p>{product.price}</p>
                   </div>
-                  <a href="/cart" className="btn btn-primary" onClick={() => this.addProductOnCart(product.productId)}>Comprar</a>
+                  <a href="/product" className="btn btn-primary" onClick={() => this.addProductOnCart(product.productId)}>Visualizar</a>
                 </div>
               </div>
             </div>
