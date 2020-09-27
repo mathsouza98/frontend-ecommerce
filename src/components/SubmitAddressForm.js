@@ -7,15 +7,6 @@ import { insertAddress } from '../services/AddressService';
 
 function SubmitAddressForm() {
 
-  // async function insertAddress(values) {
-  //   try {
-  //     const response = await axios.post('http://localhost:8080/api/account/address', values);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   return (
     <Formik
       initialValues={{ street: "", number: "", neighborhood: "", zip: "", city: "", fedUnit: "" }}

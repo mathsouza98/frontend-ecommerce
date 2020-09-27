@@ -76,8 +76,6 @@ function SelectAddress() {
           </tbody>
         </table>
       </div>
-
-      <button onClick={() => console.log(selectAddressIdState)}>Testar</button>
     </div>
   );
 }

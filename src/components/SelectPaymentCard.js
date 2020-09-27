@@ -77,8 +77,6 @@ function SelectPaymentCard() {
           </tbody>
         </table>
       </div>
-
-      <button onClick={() => console.log(selectPaymentCardIdState)}>Testar</button>
     </div>
   );
 }
