@@ -1,5 +1,5 @@
 import React from 'react';
-import auth from '../services/auth';
+import auth from '../services/Auth';
 
 const Navbar = props => {
 
@@ -23,7 +23,7 @@ const Navbar = props => {
               <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Features</a>
+              <a className="nav-link" href="/account">Minha conta</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/cart">Meu Carrinho</a>

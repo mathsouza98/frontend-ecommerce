@@ -3,14 +3,12 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import ReactDOM from "react-dom";
-import auth from '../services/auth';
+import auth from '../services/Auth';
 import findProductAssets from '../utils/findProductAssets';
 
 export default function Cart() {
-  const [selectBoxState, setSelectBoxState] = useState(1);
   const [cartState, setCartState] = useState([]);
   const [cartProductState, setCartProductState] = useState([]);
-  const [loadState, setLoadState] = useState(false);
 
   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
 
@@ -38,6 +36,24 @@ export default function Cart() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const handleIncDecProductOrder = async (id, operator) => {
+    try {
+      const result = await axios.post('http://localhost:8080/api/cart-product/' + id + '/' + operator);
+      console.log(result);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleBuyOrder = () => {
+    if (cartProductState.length === 0) {
+      alert("O carrinho deve ter pelo menos um produto");
+      return;
+    }
+    window.location.href = "/order";
   }
 
   return (
@@ -72,10 +88,10 @@ export default function Cart() {
                             </div>
                             <div>
                               <div className="def-number-input number-input safari_only mb-0 w-100">
-                                <button onClick={() => selectBoxState > 1 ? setSelectBoxState(selectBoxState - 1) : ''}
+                                <button onClick={() => product.orderQuantity > 1 ? handleIncDecProductOrder(product.id, "decrement") : ''}
                                   className="button"><span>-</span></button>
-                                <input readOnly={selectBoxState} value={selectBoxState < product.orderQuantity ? product.orderQuantity : selectBoxState} style={{ width: '35px', textAlign: 'center' }} />
-                                <button onClick={() => setSelectBoxState(selectBoxState + 1)} className="button"><span>+</span></button>
+                                <input readOnly={product.orderQuantity} value={product.orderQuantity} style={{ width: '35px', textAlign: 'center' }} />
+                                <button onClick={() => handleIncDecProductOrder(product.id, "increment")} className="button"><span>+</span></button>
                               </div>
                               <small id="passwordHelpBlock" className="form-text text-muted text-center" >Quantidade</small>
                             </div>
@@ -105,7 +121,6 @@ export default function Cart() {
                   <h5 className="mb-4">Pague com</h5>
                   <img className="mr-2" width="45px" src={require('../assets/visa.svg')} alt="Visa" />
                   <img className="mr-2" width="45px" src={require('../assets/mastercard.svg')} alt="Mastercard" />
-                  <img className="mr-2" width="45px" src={require('../assets/boleto.png')} alt="Boleto Bancario" />
                 </div>
               </div>
 
@@ -131,10 +146,10 @@ export default function Cart() {
                       <span><strong>R$ {cartState === null ? 0 : cartState.finalPrice}</strong></span>
                     </li>
                   </ul>
-                  <button type="button" className="btn btn-primary btn-block">Finalizar Compra</button>
+                  <a onClick={() => handleBuyOrder()} style={{ color: '#fff' }} className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
                 </div>
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <div className="pt-4">
                   <a className="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample">
@@ -149,7 +164,7 @@ export default function Cart() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
