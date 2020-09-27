@@ -14,17 +14,6 @@ export default class Products extends Component {
     this.setState({ products: response.data });
   }
 
-  // async addProductOnCart(id) {
-  //   axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
-  //   const response = await axios.post('http://localhost:8080/api/cart/' + id);
-  // }
-
-  async goToProductScreen(id) {
-    // axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
-    const response = await axios.get('http://localhost:8080/api/products/' + id);
-    // this.setState({ products: response.data });
-  }
-
   render() {
     return (
       <div className="container-fluid">
@@ -40,7 +29,7 @@ export default class Products extends Component {
                     <p>{product.brand} {product.category}</p>
                     <p><b>R$ {product.price},00</b></p>
                   </div>
-                  <a href="/product/{id}" className="btn btn-primary" >Visualizar</a>
+                  <a onClick={() => window.location.href = "http://localhost:3000/product/" + product.id} className="btn btn-primary" >Visualizar</a>
                 </div>
               </div>
             </div>

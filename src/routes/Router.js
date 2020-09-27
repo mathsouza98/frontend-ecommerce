@@ -16,9 +16,6 @@ export default function Router() {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route exact path='/product/:id'>
-            <ProductScreen />
-          </Route>
           <Route exact path='/cart'>
             <Cart />
           </Route>
@@ -38,6 +35,7 @@ export default function Router() {
           <UserProtectedRoute exact path="/order" component={Order} />
           <UserProtectedRoute exact path="/order/500" component={OrderError} />
           <UserProtectedRoute exact path="/bill/:orderId" component={Bill} />
+          <UserProtectedRoute exact path="/product/:productId" component={ProductScreen} />
           {/* <ProtectedRoute exact path="/cart" component={Cart} /> */}
         </Switch>
       </BrowserRouter>

@@ -1,22 +1,27 @@
-import React, { useEffect, Component } from 'react';
+import React, { useEffect, useState, Component } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import findProductAssets from '../utils/findProductAssets';
 import { Navbar } from '../components/index';
 
 export default function ProductScreen(props) {
-    useEffect(() => {
-        showProduct();
-        }, []);
+  const params = useParams();
+  const productId = params.productId ? params.productId.toString() : undefined;
+  const [productState, setProductState] = useState();
 
-  const showProduct = async () => {
-    const response = await axios.get('http://localhost:8080/api/products/' + props.id);
-    this.setState({ products: response.data });
+  useEffect(() => {
+      fetchData();
+      }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/products/' + productId);
+      console.log(response);
+      setProductState(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-//   async componentDidMount() {
-//     const response = await axios.get('http://localhost:8080/api/products/{id}');
-//     this.setState({ products: response.data });
-//   }
 
   const addProductOnCart = async (id) => {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
@@ -29,7 +34,7 @@ export default function ProductScreen(props) {
       <div className="container-fluid">
         {/* <h1>Produtos</h1> */}
         <div className="row" style={{ margin: '30px 0px', justifyContent: 'center' }}>
-          {cartProductState.map(product => (
+          {productState.map(product => (
             <div key={product.id} className="col-sm-12 col-md-6 col-lg-4">
               <div className="card" style={{ width: '100%', marginBottom: '20px' }}>
                 <img className="card-img-top" src={findProductAssets(product.category)} alt="" srcSet={findProductAssets(product.category)} />
