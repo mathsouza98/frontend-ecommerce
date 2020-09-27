@@ -45,6 +45,7 @@ function SelectPaymentCard() {
       <Navbar />
       <div className="container">
         <a className="btn btn-primary" style={{ marginTop: "30px" }} href="/admin">Produtos</a>
+        <a className="btn btn-primary" style={{ marginTop: "30px", marginLeft: '30px' }} href="/admin/users/submit">Cadastrar Usuário</a>
         <h4 style={{ margin: '20px 0px' }}>Usuários</h4>
         <div className="card">
           <table className="table">

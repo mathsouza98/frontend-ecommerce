@@ -8,4 +8,5 @@ export { default as Users } from './Users';
 export { default as Order } from './Order';
 export { default as OrderError } from './OrderError';
 export { default as Bill } from './Bill';
+export { default as SubmitRoleBasedUserForm } from './SubmitRoleBasedUserForm';
 export { default as Products } from './Products';
