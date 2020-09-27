@@ -10,6 +10,7 @@ function SubmitUserForm() {
       const response = await axios.post("http://localhost:8080/api/auth/signup", values);
       console.log(response);
       alert("usuário cadastrado com sucesso!");
+      window.location.href = "http://localhost:3000/login";
     } catch (error) {
       console.log(error);
       alert("Erro: Não foi possível cadastrar usuário!");
