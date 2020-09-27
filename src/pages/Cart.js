@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import ReactDOM from "react-dom";
-import auth from '../services/auth';
+import auth from '../services/Auth';
 import findProductAssets from '../utils/findProductAssets';
 
 export default function Cart() {
@@ -46,6 +46,14 @@ export default function Cart() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const handleBuyOrder = () => {
+    if (cartProductState.length === 0) {
+      alert("O carrinho deve ter pelo menos um produto");
+      return;
+    }
+    window.location.href = "/order";
   }
 
   return (
@@ -113,7 +121,6 @@ export default function Cart() {
                   <h5 className="mb-4">Pague com</h5>
                   <img className="mr-2" width="45px" src={require('../assets/visa.svg')} alt="Visa" />
                   <img className="mr-2" width="45px" src={require('../assets/mastercard.svg')} alt="Mastercard" />
-                  <img className="mr-2" width="45px" src={require('../assets/boleto.png')} alt="Boleto Bancario" />
                 </div>
               </div>
 
@@ -139,10 +146,10 @@ export default function Cart() {
                       <span><strong>R$ {cartState === null ? 0 : cartState.finalPrice}</strong></span>
                     </li>
                   </ul>
-                  <a className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
+                  <a onClick={() => handleBuyOrder()} style={{ color: '#fff' }} className="btn btn-primary btn-block" role="button" aria-pressed="true">Finalizar compra</a>
                 </div>
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <div className="pt-4">
                   <a className="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample">
@@ -157,7 +164,7 @@ export default function Cart() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
