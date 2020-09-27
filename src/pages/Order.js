@@ -31,8 +31,13 @@ const Order = props => {
         paymentCardId: paymentCardId,
         installmentNumber: installmentNumber
       });
-      console.log(response);
-      window.location.href = "http://localhost:3000/bill/" + response.data;
+      console.log(response.data);
+
+      if (response.data === 500) {
+        window.location.href = "http://localhost:3000/order/500";
+      } else {
+        window.location.href = "http://localhost:3000/bill/" + response.data;
+      }
     } catch (error) {
       console.log(error);
     }
