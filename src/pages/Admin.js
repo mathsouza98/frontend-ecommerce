@@ -22,6 +22,9 @@ export default function Admin() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+  }, [productState]);
+
 
   return (
     <div>

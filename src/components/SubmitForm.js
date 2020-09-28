@@ -4,6 +4,7 @@ import { Formik, Field, Form } from "formik";
 import axios from 'axios';
 
 function SubmitForm({ requestMethod, data }) {
+  axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
 
   async function insertProduct(values) {
     const response = await axios.post('http://localhost:8080/api/products/', values)
